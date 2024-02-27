@@ -1,0 +1,57 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="header">
+        <h2 class="usermail">{{ request.user.email }}</h2>
+        <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="navbuttons">
+            <button class="navbutton" id="inbox">Inbox</button>
+            <button class="navbutton" id="compose">Compose</button>
+            <button class="navbutton" id="sent">Sent</button>
+            <button class="navbutton" id="archived">Archived</button>
+            <a class="navbutton" href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </div>
+    <div class="navbar">
+        <button class="navbutton" id="inbox">Inbox</button>
+        <button class="navbutton" id="compose">Compose</button>
+        <button class="navbutton" id="sent">Sent</button>
+        <button class="navbutton" id="archived">Archived</button>
+        <a class="navbutton" href="{% url 'logout' %}">Log Out</a>
+    </div>
+    
+    <div id="emails-view">
+    </div>
+
+    <div id="content-view">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                <p>From:</p>
+                <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                <p>To:</p>
+                <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <p>Subject:</p>
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
